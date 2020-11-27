@@ -2,16 +2,14 @@ const axios = require('axios');
 
 module.exports = {
 
-    on:  async () => {
-        await axios.get(`${process.env.HA_NODERED_URL}/light-on`, {
-            headers: {
-                Authorization: process.env.HA_NODERED_AUTH
-            }
-        });
-    },
+    onOf:  async (input) => {
+        let path = "light-on";
 
-    off: async () => {
-        const result = await axios.get(`${process.env.HA_NODERED_URL}/light-off`, {
+        if(input == 'off') {
+            path = "light-off";
+        }
+
+        await axios.get(`${process.env.HA_NODERED_URL}/${path}`, {
             headers: {
                 Authorization: process.env.HA_NODERED_AUTH
             }

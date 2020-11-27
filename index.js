@@ -32,11 +32,8 @@ async function onMessageHandler(target, context, msg, self) {
     console.log(commandName);
 
 	switch (commandName[0]) {
-		case "!light-on":
-			await lights.on();
-			break;
-		case "!light-off":
-			await lights.off();
+		case "!luz":
+			await lights.onOff(commandName[0]);
 			break;
 		case "!light-color":
 			await lights.color('');
