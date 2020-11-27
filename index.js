@@ -27,9 +27,11 @@ async function onMessageHandler(target, context, msg, self) {
 	if (self) { return; } 
 
 
-	const commandName = msg.trim();
+    const commandName = msg.trim().split(' ');
+    
+    console.log(commandName);
 
-	switch (commandName) {
+	switch (commandName[0]) {
 		case "!light-on":
 			await lights.on();
 			break;
@@ -37,8 +39,12 @@ async function onMessageHandler(target, context, msg, self) {
 			await lights.off();
 			break;
 		case "!light-color":
-			await lights.color();
-			break;
+			await lights.color('');
+            break;
+        case "!color":
+            await lights.color(commandName[1]);
+            break;
+        
 	
 		default:
 			break;
